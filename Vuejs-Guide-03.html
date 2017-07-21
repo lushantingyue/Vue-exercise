@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> Vue计算属性 </title>
+    <link rel="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="example">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <h4>Watch Property属性</h4>
+    <h3>{{ fullName }}</h3>
+    <!--  计算属性 setter-->
+    <!-- watcher 响应异步或耗时任务事件 -->
+</div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:'#example',
+        data:  {
+            message: 'reverse Me!',
+            firstName: 'Will',
+            lastName: 'Smith',
+            fullName: 'Will Smith'
+        },
+        //  计算属性, 与 Methods方法属性相比, 带有缓存特性, 即只有当数据发生改变时才会刷新
+        computed: {
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('')
+            }
+        },
+        //  Vue.js 提供了一个方法 $watch ，它用于观察 Vue 实例上的数据变动。
+        //  当一些数据需要根据其它数据变化时, 可以通过watch扩展方法实时更新视图数据
+        //  和 computed 计算属性对比, 计算属性更简洁
+        watch: {
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
+            }
+        }
+    })
+
+</script>
+</html>

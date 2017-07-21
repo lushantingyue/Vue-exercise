@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> Class 与 Style 绑定 </title>
+    <!-- 绑定的表达式除了 字符串之外，还可以是对象或数组 -->
+    <link ref="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<!-- 绑定Html class -->
+<!-- # 绑定对象 -->
+<!-- # 绑定数组 -->
+<!-- # 应用在组件上-->
+<!-- 绑定内联样式 -->
+<div id="app">
+    <!-- 对象语法 -->
+    <p class="static" v-bind:class="{ active:isActive, 'text-danger':true}">*对象语法==绑定属性==* Hello Vuejs!</p>
+    <p v-bind:class="classObject">*对象语法==绑定对象==*Hello</p>
+    <p v-bind:class="activeObject">*对象语法==绑定计算属性==*</p>
+    <!-- 数组语法 -->
+    <p v-bind:class="[activeClass, errorClass]">class-bind by array: Hello Vuejs</p>
+    <!-- 同样可用在自定义组件上面 -->
+
+    <!-- 绑定内联样式 -->
+    <!-- 对象语法 -->
+    <p v-bind:style="styleObject">内联样式</p>
+    <p class="active:isActive" style="display:none"> Hello Vuejs!</p>
+    <!-- 数组语法: 方便绑定多个样式-->
+    <div v-bind:style="[color, fontSize]">
+        <p >多个样式</p>
+    </div>
+</div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            hasError: true,
+            classObject: {
+                active: false,
+                'text-danger': true
+            },
+            activeClass: 'active',
+            errorClass: 'text-danger',
+            styleObject: {
+                color: 'orange',
+                fontSize: 30
+            },
+            color: 'orange',
+            fontSize: 30
+        },
+        computed: {
+            activeObject: function () {
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger': this.error && this.error.type === 'fatal',
+                }
+            }
+        },
+        methods: {}
+    })
+</script>
+</html>

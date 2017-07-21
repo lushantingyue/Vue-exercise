@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs 简单示例 -- v-text属性绑定数据</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <!--此处的msg为在vuejs中定义的变量-->
+    <h1>Hello {{msg}}</h1>
+    <!-- 使用v-text属性绑定 vue中定义的msg值 至 span标签-->
+    <span v-text="msg">hello shiyanlou</span>
+</div>
+<script>
+    <!-- 实例化vuejs-->
+    new Vue({
+        el: '#demo',
+        data: {
+            msg: '实验楼'
+        }
+    })
+</script>
+</body>
+</html>

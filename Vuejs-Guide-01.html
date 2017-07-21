@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Vuejs实例 </title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!--<h1>Hello {{msg}}</h1>-->
+    <span v-text="msg">texture</span>
+</div>
+</body>
+
+<script>
+    var data = { msg: 'vue-guide' }
+
+    var vm = new Vue({
+        el:'#app',
+        data: data,
+//        生命周期钩子
+//        created   初始化
+//        beforeUpdate  挂载view-model 数据前
+//        mounted   挂载 view-model 完成
+//        updated   更新视图
+//        beforeDestroy     销毁Vue 实例前
+//        destroyed     销毁 Vue 实例
+        mounted:function () {
+            alert('a is: ' + this.msg);
+        }
+    })
+
+</script>
+</html>

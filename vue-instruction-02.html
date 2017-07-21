@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for Vuejs常用指令</title>
+    <link rel="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="demo">
+    <h1> v-for 遍历数组 </h1>
+    <!--指令: 可以看作特殊的html属性, 将指令绑定在元素上时，指令会为绑定的目标元素添加一些特殊的行为-->
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="person in people">
+            <td> {{ person.name }} </td>
+            <td> {{ person.age }}</td>
+            <td> {{ person.gender }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            yes: true,
+            no: false,
+            age: 28,
+            name: 'keepfool. -- via Jobs',
+            people: [{
+                name: 'Jack',
+                age: 30,
+                gender: 'Male'
+            }, {
+                name: 'Bill',
+                age: 26,
+                gender: 'Male'
+            }, {
+                name: 'Tracy',
+                age: 22,
+                gender: 'Female'
+            }, {
+                name: 'Chris',
+                age: 36,
+                gender: 'Male'
+            }]
+        }
+    });
+</script>
+
+</html>

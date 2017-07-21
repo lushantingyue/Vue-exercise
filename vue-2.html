@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs 简单示例 -- 通过v-model属性实现双向数据绑定</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <!--此处的msg为在vuejs中定义的变量-->
+    <h1>Hello {{msg}}</h1>
+    <!--创建一个文本框并使用 v-model属性绑定 vue中定义的msg值-->
+    <input type="text" v-model="msg">
+</div>
+<script>
+    <!-- 实例化vuejs-->
+    new Vue({
+        el: '#demo',
+        data: {
+            msg: '实验楼'
+        }
+    })
+</script>
+</body>
+</html>

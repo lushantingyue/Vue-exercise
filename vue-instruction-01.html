@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs常用指令</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <h1> v-if 根据条件表达式的值来执行元素的插入或者删除行为 </h1>
+    <!--指令: 可以看作特殊的html属性, 将指令绑定在元素上时，指令会为绑定的目标元素添加一些特殊的行为-->
+    <h2 v-if="yes">Yes!</h2>
+    <h2 v-if="no">No!</h2>
+    <h2 v-if="age >= 18">Age: {{ age }}</h2>
+    <h2 v-if="name.indexOf('Jobs')>=0">Name:{{name}}</h2>
+    <h1> v-show 简单地为元素样式表设置display属性 </h1>
+    <h2 v-show="show">show!</h2>
+    <h2 v-show="age >=30">Age:{{ age }}</h2>
+    <h2 v-show="name.indexOf('Steve')>=0">Name:{{name}}</h2>
+    <br>
+    <h2> v-else 必须跟在v-if或v-show 后面</h2>
+    <h2 v-if="age >= 30">30以上</h2>
+    <h2 v-else="">Name:{{ name }}</h2>
+    <h1> ------------------------------------------------ </h1>
+    <h2 v-show="true">The people is : {{ name }}</h2>
+    <h2 v-else="">Not exist </h2>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            yes:false,
+            no:false,
+            age:28,
+            name: 'keepfool. -- via Jobs',
+            show:true
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs demo</title>
+    <link rel="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="demo">
+    <fieldset>
+        <legend>
+            Create New Person
+        </legend>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" v-model="newPerson.name"/>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="text" v-model="newPerson.age"/>
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <select type="text" v-model="newPerson.gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label></label>
+            <!--<button v-on:click="createPerson">Create</button>-->
+            <!-- 简写 -->
+            <button @click="createPerson">Create</button>
+        </div>
+    </fieldset>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="person in people">
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.sex }}</td>
+            <td v-bind:class="'text-center'">
+                <button @click="deletePerson($index);toast('删除一个元素! ')">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            message: 'Hello, Vuejs!',
+            newPerson: {
+                name: '',
+                age: '',
+                gender: 'Male'
+            },
+            people: [{
+                name: 'Johnson',
+                age: 30,
+                gender: 'Male'
+            }, {
+                name: 'Bill',
+                age: 26,
+                gender: 'Male'
+            }, {
+                name: 'Tracy',
+                age: 22,
+                gender: 'Female'
+            }, {
+                name: 'Chris',
+                age: 36,
+                gender: 'Male'
+            }]
+        },
+        methods: {
+            createPerson: function () {
+                this.people.push(this.newPerson);
+                this.toast(`新增一个元素! ` + this.newPerson.name);
+                this.newPerson = {name: '', age: 0, gender: 'Male'};
+            },
+            deletePerson: function (index) {
+                this.people.splice(index, 1);
+            },
+            toast: function (msg) {
+                alert(msg)
+            }
+        }
+    });
+</script>
+
+</html>

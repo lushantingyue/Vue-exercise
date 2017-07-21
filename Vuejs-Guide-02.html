@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> Vue模板语法 </title>
+    <link rel="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <h1>Message: {{msg}}</h1>
+    <span v-once>只插值一次, 后续不更新: {{msg}}</span>
+    <h4>请只对可信内容进行 html插值, 以规避 XSS内容攻击</h4>
+    <div v-html="rawHtml"> html内容 </div>
+    <!--属性绑定-->
+<div v-bind:id="dynamicId"></div>
+<!-- Javascript 表达式, 只能绑定单条表达式-->
+    <a>Are you ok?</a>
+    <h4>{{ ok ? 'Well' : 'Terrible' }}</h4>
+
+    <!-- 过滤器和过滤器函数 -->
+    <p> {{ words | capitalize}}</p>
+
+    <!-- v 指令-->
+    <!-- 修饰符 -->
+</div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:  {
+            ok: false,
+            msg: '双向绑定',
+            words: 'awesome',
+            rawHtml:'<button>按钮</button>'
+        },
+        methods: {
+            dynamicId:function () {
+
+            }
+        },
+        filters: {
+            //  首字母大写
+            capitalize : function (value) {
+                if(!value)
+                    return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            }
+        }
+//        , mounted:function () {
+//            alert('a is: ' + this.msg);
+//        }
+    })
+
+</script>
+</html>
