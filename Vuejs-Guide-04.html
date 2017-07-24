@@ -26,11 +26,8 @@
     <!-- 绑定内联样式 -->
     <!-- 对象语法 -->
     <p v-bind:style="styleObject">内联样式</p>
-    <p class="active:isActive" style="display:none"> Hello Vuejs!</p>
     <!-- 数组语法: 方便绑定多个样式-->
-    <div v-bind:style="[color, fontSize]">
-        <p >多个样式</p>
-    </div>
+    <h2 v-bind:style="[styleObject, styleExtension]">多个样式</h2>
 </div>
 </body>
 
@@ -49,6 +46,9 @@
             styleObject: {
                 color: 'orange',
                 fontSize: 30
+            },
+            styleExtension: {
+                background: '#ccefff',
             },
             color: 'orange',
             fontSize: 30
