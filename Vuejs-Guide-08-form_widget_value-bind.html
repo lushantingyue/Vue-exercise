@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:kv-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> 表单控件绑定 </title>
+    <!-- 绑定value -->
+    <link ref="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <!-- #绑定Value -->
+    <!--有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。-->
+    <!--注意: a, b 是动态属性, 需要在data中声明-->
+    <input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value='b'>
+    <label>{{ toggle }}</label>
+
+    <select v-model="selected">
+        <!-- 内联对象字面量 -->
+        <option v-bind:value="country01">CHN</option>
+        <option v-bind:value="country02">BRAS</option>
+        <option v-bind:value="country03">IRAN</option>
+    </select>
+    <label>{{ selected }}</label>
+
+</div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            selected: '',
+            toggle: '科属',
+//            动态属性预先声明
+            a:'鸟类',
+            b:'哺乳类',
+            country01 : '中国队',
+            country02: '巴西队',
+            country03: '伊朗队'
+        },
+        methods: {}
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs组件 -- Slots事件分发</title>
+    <!--为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 内容分发-->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="slots-example">
+    <!-- #Slots事件分发-->
+    <!-- ##编译作用域-->
+    <!--分发内容在父组件作用域内编译, 子组件属性在子组件作用域内编译-->
+
+    <!--##单个Slot-->
+    <!-- 释: 1.当子组件模板只有一个没有属性的 slot 时，父组件整个内容片段将插入到 slot 所在的 DOM 位置，并替换掉 slot 标签本身。-->
+    <!-- 2.备用内容在子组件的作用域内编译，并且只有在宿主元素为空，且没有要插入的内容时才显示备用内容。-->
+    <div>
+        <h1>父组件标题</h1>
+        <child-component>
+            <!--<p>内容一</p>-->
+            <!--<p>内容二</p>-->
+        </child-component>
+    </div>
+
+    <!--##具名Slots-->
+    <!--<slot> 元素可以用一个特殊的属性 name 来配置如何分发内容。-->
+    <!--具名 slot 将匹配内容片段中有对应 slot 特性的元素。-->
+    <app-layout>
+        <h1 slot="header">文章标题</h1>
+        <p>正文内容</p>
+        <p>等等... </p>
+        <p slot="footer">Vuejs笔记 2017/8/18</p>
+    </app-layout>
+</div>
+</body>
+
+<script>
+
+    Vue.component('child-component', {
+        template: '<div>\
+            <h2>子组件标题</h2>\
+            <slot>没有分发内容</slot>\
+        </div>'
+    });
+    Vue.component('app-layout', {
+        template: '<div class="container">\
+            <header>\
+                <slot name="header"></slot>\
+            </header>\
+            <main>\
+                <slot></slot>\
+            </main>\
+            <footer>\
+                <slot name="footer">2017/8/18</slot>\
+            </footer>\
+        </div>'
+    });
+
+    var vm = new Vue({
+        el: '#slots-example',
+        data: {},
+        methods: {}
+    })
+
+</script>
+</html>

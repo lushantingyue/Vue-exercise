@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs组件 -- 属性下发和事件回传</title>
+    <!--#自定义事件-->
+    <!--##使用 v-on 绑定自定义事件-->
+    <!--##使用自定义事件的表单输入事件-->
+    <!--##非父子组件通信-->
+
+    <!-- 在 Vue.js 中，父子组件的关系可以总结为 props down, events up 。
+    父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。-->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="counter-event-example">
+    <!-- 自定义事件: 子组件通过自定义事件回传数据给父组件-->
+    <!-- #使用v-on绑定自定义事件-->
+    <p>{{ total }}</p>
+    <btn-counter v-on:increment="incrementTotal"></btn-counter>
+    <btn-counter v-on:increment="incrementTotal"></btn-counter>
+
+    <br><br>
+    <!-- #使用自定义事件的表单输入事件-->
+    <!--<input v-model="something">-->
+    <currency-input v-model="price"></currency-input>
+
+    <!-- #非父子组件通信-->
+    <!--复杂情况下, 考虑使用专门的 状态管理模式, 例如 vuex状态管理库-->
+</div>
+</body>
+
+<script>
+    //    父组件 与 子组件 的数据通信
+    //    触发子组件内部事件, 同时触发父组件的事件, 两者数据互不影响
+    Vue.component('btn-counter', {
+        template: '<button v-on:click="increment">{{ counter }}</button>',
+        data: function () {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            increment: function () {
+                this.counter += 1,
+                    this.$emit('increment')
+            }
+        },
+    });
+
+    Vue.component('currency-input', {
+        template: '<span>$\
+            <input ref="input" \
+            v-bind:value="value"\
+             v-on:input="updateValue($event.target.value)">\
+        </span>',
+        props: ['value'],
+        methods: {
+            updateValue: function (value) {
+                var formattedValue = value.trim()
+                    .slice(0, value.indexOf('.') + 3)
+
+                if (formattedValue !== value) {
+                    this.$refs.input.value = formattedValue
+                }
+                this.$emit('input', Number(formattedValue))
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#counter-event-example',
+        data: {
+            total: 0,
+            price: 200
+        },
+        methods: {
+            incrementTotal: function () {
+                this.total += 1
+            }
+        }
+    })
+
+</script>
+</html>

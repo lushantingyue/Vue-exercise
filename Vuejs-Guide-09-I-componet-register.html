@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs组件</title>
+    <!-- 扩展html元素, 实现代码重用 -->
+
+    <!--#全局注册-->
+    <!--#局部注册-->
+    <!--#DOM模板解析说明-->
+    <!--#data必须是函数-->
+    <!--#父子组件 "数据-- 事件"协同机制-->
+
+    <!--#Prop-->
+    <!--##Prop传递数据-->
+    <!--##动态Props-->
+    <!--##单向数据流-->
+    <!--##Prop验证-->
+
+    <!--#自定义事件-->
+    <!--##使用 v-on 绑定自定义事件-->
+    <!--##使用自定义事件的表单输入事件-->
+    <!--##非父子组件通信-->
+
+    <!--#Slot分发内容-->
+
+    <!--#动态组件-->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="example">
+    <my-component></my-component>
+    <div v-text="weather">天气</div>
+</div>
+</body>
+
+<script>
+    //    组件: 自定义的Vuejs 实例
+    //  1. 全局注册
+    Vue.component('my-component', {
+        template: '<div>自定义组件</div><div v-text="weather">天气</div>'
+    })
+
+    new Vue({
+        el: '#example',
+        data: {
+            weather: 'Cloud'
+        }
+    })
+
+</script>
+</html>

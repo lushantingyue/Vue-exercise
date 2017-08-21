@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:kv-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> 表单控件绑定 </title>
+    <!-- 基础用法 -->
+    <!-- 绑定value -->
+    <!-- v-model 与组件 -->
+    <link ref="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <!-- #基础用法 -->
+    <!--文本-->
+    <input v-model="message" placeholder="edit me">
+    <p>普通文本:{{ message }}</p>
+    <br>
+
+    <!--多行文本-->
+    <span>多行文本:</span>
+    <p style="white-space: pre"> {{ multiMessage }}</p>
+    <textarea v-model="multiMessage" placeholder="add multiple lines content"></textarea>
+    <br><br>
+
+    <h4># 复选框</h4>
+    <h5>单个勾选框</h5>
+    <input type="checkbox" v-model="checked">
+    <label>{{ checked }}</label>
+    <h5>多个勾选框</h5>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+
+    <h4>多选框</h4>
+    <select v-model="selected" multiple>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <br>
+    <span>Selected: {{ selected }}</span>
+
+    <!-- #绑定Value -->
+    <!--有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。-->
+    <input type="checkbox" v-model="toggle" v-bind:true-value="鸟类" v-bind:false-value="哺乳类">
+    <!--<input type="checkbox" v-model="toggle"-->
+           <!--v-bind:true-value="a"-->
+           <!--v-bind:false-value="b">-->
+
+    <!-- #修饰符-->
+    <!--在默认情况下， v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步-->
+    <h6># .lazy</h6>
+    <input v-model.lazy="lazyValue">
+    <p>{{ lazyValue }}</p>
+
+    <h6># .number</h6>
+    <input v-model.number="age" type="number">
+    <p>{{ age }}</p>
+
+    <h6># .trim</h6>
+    <input v-model.trim="msg">
+    <p>{{ msg }}</p>
+
+    <input type="radio" v-model="pick" v-bind:value="a">
+    <select v-model="selectedd">
+        <!-- 内联对象字面量 -->
+        <option v-bind:value="{ number: 123 }">123</option>
+    </select>
+
+    <input type="checkbox" v-model="Toggle"
+            v-bind:true-value="yes"
+            v-bind:false-value="no">
+    <label>{{ Toggle }}</label>
+</div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: '',
+            multiMessage: '',
+            checked: true,
+            checkedNames: [],
+            selected: '',
+            toggle: '',
+            selectedd: '',
+            Toggle: 'yes',
+            lazyValue: '',
+            age: '',
+            msg: ''
+        },
+        methods: {}
+    })
+
+</script>
+
+</html>

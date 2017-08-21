@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:kv-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> 事件处理器 </title>
+    <!-- 监听事件 -->
+    <!-- 监听事件至方法 -->
+    <!-- 内联Js语句-->
+    <link ref="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <button v-on:click="counter += 1">增加 1</button>
+    <p>这个按钮被点击了 {{ counter }} 次</p>
+    <br>
+    <!-- 监听事件至方法 -->
+    <button v-on:click="greet">Greet</button>
+    <p></p>
+    <!-- 内联Js语句-->
+    <button v-on:click="say('hello')">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+    <!-- 通过事件修饰符处理 DOM事件 -->
+    <!-- 按键修饰符: 监听按键事件时, 监测键值 -->
+    <input type="text" v-model="msg" v-on:keyup.enter="submit(msg)" >
+
+</div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            name: 'Vue.js'
+        },
+        methods: {
+            greet: function (event) {
+                alert('hello ' + this.name + '!')
+                alert(event.target.tagName)
+            },
+            say: function (message) {
+                alert(message)
+            },
+            submit: function (msg) {
+                alert(msg)
+            }
+        }
+    })
+
+</script>
+
+</html>

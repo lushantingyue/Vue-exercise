@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> 列表渲染 -- 数组数据的迭代 </title>
+    <!-- v-for -->
+    <!-- template v-for -->
+    <!-- key -->
+    <link ref="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- v-for -->
+    <ul id="example-1">
+        <li v-for="item in fruit">
+            {{ item }}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(item, index) in fruit">
+            {{ index }} - {{ item }}
+        </li>
+    </ul>
+    <!-- template v-for 模板迭代 -->
+    <ul>
+        <template v-for="item in fruit">
+            <li> {{ item }}</li>
+            <li> ============= </li>
+        </template>
+    </ul>
+    <!-- 整数迭代 -->
+    <span v-for="n in 10"> {{n}} </span>
+</div>
+
+<!-- 对象迭代 -->
+<h4> ====== 对象迭代 ====== </h4>
+<div id="repeat-object">
+    <ul class="demo">
+        <li v-for="value of person">
+            {{ value }}
+        </li>
+    </ul>
+
+    <div v-for="(value, key, index) of person">
+        {{ index }} ) {{ key}} : {{ value }}
+    </div>
+</div>
+
+<!-- # 组件 和 v-for -->
+<!-- # 数组更新检测 -->
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            fruit: ['apple', 'banana', 'orange', 'pineapple', 'lemon'],
+        }
+
+    })
+    var vm2 = new Vue({
+        el: '#repeat-object',
+        data: {
+            person: {
+                firstName: 'Stan',
+                lastName: 'Bush',
+                age: 64
+            }
+        }
+    })
+
+</script>
+</html>

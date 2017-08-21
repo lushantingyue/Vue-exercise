@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs组件 -- 局部注册</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="example">
+    <my-component></my-component>
+    <!--<h6> {{ weather }} </h6>-->
+</div>
+</body>
+
+<script>
+    //    组件: 自定义的Vuejs 实例
+    //  1. 局部注册
+    var data = { weather:'Cloudy'}
+    var Child = {
+        template: '<div>自定义组件-局部作用域 <h6> {{ weather }} </h6> </div>',
+//        data必须是函数才能绑定数据到组件
+        data: function () {
+            return data
+        }
+//        template: '<table>' +
+//            '<tr is="my-row">hello</tr>' +
+//        '<tr is="my-row">netease</tr>' +
+//        '</table>'
+    }
+
+    new Vue({
+        el: '#example',
+        components: {
+            'my-component': Child
+        }
+    })
+
+    // 2. DOM模板解析
+
+</script>
+</html>

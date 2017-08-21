@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs组件 -- 动态组件切换</title>
+    <!-- 多个组件可以使用同一个挂载点，然后动态地在它们之间切换。使用保留的 <component> 元素，动态地绑定到它的 is 特性-->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<!--#多组件切换-->
+<div id="multi-component-example">
+    <component v-bind:is="currentView"></component>
+
+    <!--#keep-alive参数-->
+    <!--作用: 把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。-->
+    <keep-alive>
+        <component :is="currentView"></component>
+    </keep-alive>
+</div>
+
+<!--#杂项-->
+<!--##编写可复用组件-->
+
+<!--##子组件索引-->
+<!--##异步组件-->
+<!--##组件命名约定-->
+<!--##递归组件-->
+<!--##内联模版-->
+<!--##X-Templates-->
+<!--##使用 v-once 的低级静态组件(Cheap Static Component)-->
+
+</body>
+
+<script>
+    //    var Home = {template: '<p>Welcome home!</p>'}
+
+    var vm = new Vue({
+        el: '#multi-component-example',
+        data: {
+            currentView: 'posts'
+        },
+        components: {
+            home: {template: '<p>Welcome home!</p>'},
+            posts: {template: '<h2>Post Data!</h2>'},
+            archive: {template: '<p>Show Content</p>'}
+        },
+        methods: {}
+    })
+
+</script>
+</html>

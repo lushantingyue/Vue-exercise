@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> 条件渲染 </title>
+    <!-- v-if -->
+    <!-- template v-if -->
+    <link ref="stylesheet" href="./styles/demo.css">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- v-if -->
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+    <!-- template v-if 多元素条件渲染 -->
+    <template v-if="template_ok">
+        <h1>Title</h1>
+        <p>Paragraph01</p>
+        <p>Paragraph02</p>
+    </template>
+    <div v-if="Math.random()>0.5">
+        Sorry
+    </div>
+    <div v-else>
+        No Sorry
+    </div>
+    <!-- v-show不支持 template语法-->
+    <div v-show="vshow">
+        Hello!
+    </div>
+    <!-- 一般来说, v-if 有更高的切换消耗而 v-show 有更高的初始渲染消耗.
+    因此, 如果需要频繁切换使用 v-show 较好，如果在运行时条件不大可能改变则使用 v-if 较好. -->
+</div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            ok: false,
+            template_ok: true,
+            vshow: false,
+        }
+
+    })
+</script>
+</html>
