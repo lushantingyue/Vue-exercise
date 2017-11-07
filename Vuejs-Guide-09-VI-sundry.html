@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuejs组件 -- 杂项</title>
+    <!-- 多个组件可以使用同一个挂载点，然后动态地在它们之间切换。使用保留的 <component> 元素，动态地绑定到它的 is 特性-->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+<!--#杂项-->
+<!--##编写可复用组件-->
+<!--##子组件索引-->
+<!--##异步组件-->
+<!--##组件命名约定-->
+
+<!--##递归组件-->
+<!--应用: 级联选择菜单-->
+<div id="sundry-example">
+    <menu :count="1"></menu>
+</div>
+
+<!--#杂项-->
+<!--##编写可复用组件-->
+
+<!--##子组件索引-->
+<!--##异步组件-->
+<!--##组件命名约定-->
+<!--##递归组件-->
+<!--##内联模版-->
+<!--##X-Templates-->
+<!--##为了降低使用开销, 对于低级静态组件(Cheap Static Component), 请尽量使用 v-once -->
+</body>
+
+<script>
+    var menu = {
+        props: {
+            count: {
+                type: Number,
+                default: 1
+            }
+        },
+        template: '<menu :count="count+1" v-if="count < 3">area-name</menu>'
+    }
+
+    var vm = new Vue({
+        el: '#sundry-example',
+
+        data: {},
+        components: {
+            home: menu
+        },
+        methods: {}
+    })
+
+</script>
+</html>

@@ -17,18 +17,13 @@
     <keep-alive>
         <component :is="currentView"></component>
     </keep-alive>
+    <keep-alive>
+        <component :is="p1"></component>
+    </keep-alive>
+    <keep-alive>
+        <component :is="p2"></component>
+    </keep-alive>
 </div>
-
-<!--#杂项-->
-<!--##编写可复用组件-->
-
-<!--##子组件索引-->
-<!--##异步组件-->
-<!--##组件命名约定-->
-<!--##递归组件-->
-<!--##内联模版-->
-<!--##X-Templates-->
-<!--##使用 v-once 的低级静态组件(Cheap Static Component)-->
 
 </body>
 
@@ -38,7 +33,9 @@
     var vm = new Vue({
         el: '#multi-component-example',
         data: {
-            currentView: 'posts'
+            currentView: 'posts', // 切换挂载点
+            p1: 'home',
+            p2: 'archive',
         },
         components: {
             home: {template: '<p>Welcome home!</p>'},
